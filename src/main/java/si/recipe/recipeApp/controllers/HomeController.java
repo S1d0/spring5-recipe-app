@@ -1,5 +1,6 @@
 package si.recipe.recipeApp.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import si.recipe.recipeApp.services.RecipeService;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Controller
 public class HomeController {
 
@@ -23,6 +25,7 @@ public class HomeController {
 
     @RequestMapping({"","/","home"})
     public String home(Model model) {
+        log.debug("IN CONTROLLER METHOD home()");
         model.addAttribute("recipes", recipeService.getAll());
         return "index";
     }

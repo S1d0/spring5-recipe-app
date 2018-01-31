@@ -1,5 +1,6 @@
 package si.recipe.recipeApp.bootsrap;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -8,7 +9,6 @@ import si.recipe.recipeApp.domain.*;
 import si.recipe.recipeApp.domain.enums.Difficulty;
 import si.recipe.recipeApp.repositories.CategoryRepository;
 import si.recipe.recipeApp.repositories.RecipeRepository;
-import si.recipe.recipeApp.repositories.SimpleRepository;
 import si.recipe.recipeApp.repositories.UomRepository;
 
 import java.math.BigDecimal;
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -32,7 +33,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent e) {
-        Simple simple = new Simple("AGH");
+        log.debug("LOADING BOOTSTRAP DATA");
         List<Recipe> recipes = getRecipes();
         recipeRepository.save(recipes);
     }
